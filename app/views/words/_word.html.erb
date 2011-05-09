@@ -1,0 +1,51 @@
+<li>
+  <br>
+  <li id="korean"><%= word.korean %></li>
+  <li id="english"><%= word.english %></li>
+  <li id="function">
+    <% case word.function %>
+      <% when 1 %>
+        Noun
+      <% when 2 %>
+        Verb
+      <% when 3 %>
+        Subject particle
+    <% end %>
+  </li>
+  <li id="note"><%= word.note.blank? ? 'none' : word.note %></li>
+  <%= link_to "delete", word, :method => :delete, :confirm => "You sure?",
+                                :title => "Delete #{word.korean}" %>
+  <li class="flashcard">flashcard<br>
+    <li id="korean"><%= word.korean %></li>
+    <span id="hiddenflashcard_<%= word.id %>">
+    <span id="hiddenside">
+      <li id="english"><%= word.english %></li>
+      <li id="function">
+      <% case word.function %>
+        <% when 1 %>
+          Noun
+        <% when 2 %>
+          Verb
+        <% when 3 %>
+          Subject particle
+      <% end %>
+      </li>
+      <li id="note"><%= word.note.blank? ? 'none' : word.note %></li>
+      <span id="hidelink_<%= word.id %>">
+      <span id="hidelink">
+        <%= link_to_function "Hide", "$('hiddenflashcard_#{word.id}').hide();$('showlink_#{word.id}').show();" %>
+      </span>
+      </span>
+    </span>
+    </span>
+    <script type="text/javascript">
+      $('hiddenflashcard_<%= word.id %>').hide();
+    </script>
+    <span id="showlink_<%= word.id %>">
+    <span id="showlink">
+      <%= link_to_function "Show", "$('hiddenflashcard_#{word.id}').show();$('showlink_#{word.id}').hide();" %>
+    </span>
+    </span>
+  </li>
+</li>
+<br>

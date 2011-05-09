@@ -1,0 +1,36 @@
+<div class="word-form">
+  <%= form_for(@word) do |f| %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    <div class="field">
+      <%= f.label :korean %><br />
+      <%= f.text_field :korean %>
+    </div>
+    <div class="field">
+      <%= f.label :english %><br />
+      <%= f.text_field :english %>
+    </div>
+    <div class="field">
+      <%= f.label :function %><br />
+      <%= f.select :function, @functions %>
+    </div>
+    <div class="field">
+      <%= f.label :note %><br />
+      <%= f.text_field :note %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add" %>
+    </div>
+  <% end %>
+</div>
+<br><br>
+<ul class="words-header">
+  <li id="korean">Korean</li>
+  <li id="english">English</li>
+  <li id="function">Function</li>
+  <li id="note">Note</li>
+</ul>
+<%= will_paginate %>
+<ul class="words">
+  <%= render @words %>
+</ul>
+<%= will_paginate %>
